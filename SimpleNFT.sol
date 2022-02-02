@@ -19,7 +19,7 @@ contract SimpleNFT {
         minter = msg.sender;
     }
 
-    function _exists(uint256 tokenId) public view returns (bool) {
+    function _exists(uint256 tokenId) internal view returns (bool) {
         address owner = tokenOwner[tokenId];
         return owner != address(0);
     }
