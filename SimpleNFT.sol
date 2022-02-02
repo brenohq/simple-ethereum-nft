@@ -34,4 +34,13 @@ contract SimpleNFT {
         require(owner != address(0), "ERROR: Invalid token.");
         return owner;
     }
+
+    function send(address receiver, uint256 tokenId) public {
+        require(_ownerOf(tokenId) == msg.sender, "ERROR: Token's owner must be the sender.");
+        require(receiver != address(0), "ERROR: Invalid receiver");
+
+        tokenOwner[tokenId] = receiver;
+        ownedTokensBalance[receiver] += 1;
+        ownedTokensBalance[msg.sender] -= 1;
+    }
 }
