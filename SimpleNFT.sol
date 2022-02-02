@@ -28,4 +28,10 @@ contract SimpleNFT {
         tokenOwner[tokenId] = msg.sender;
         ownedTokensBalance[msg.sender] += 1;
     }
+
+    function _ownerOf(uint256 tokenId) internal view returns (address) {
+        address owner = tokenOwner[tokenId];
+        require(owner != address(0), "ERROR: Invalid token.");
+        return owner;
+    }
 }
