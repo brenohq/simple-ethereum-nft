@@ -12,6 +12,9 @@ contract SimpleNFT {
     // address => total of NFT's
     mapping(address => uint256) public ownedTokensBalance;
 
+    // Events
+    event Sent(address from, address to, uint256 tokenId);
+
     constructor() {
         minter = msg.sender;
     }
@@ -42,5 +45,7 @@ contract SimpleNFT {
         tokenOwner[tokenId] = receiver;
         ownedTokensBalance[receiver] += 1;
         ownedTokensBalance[msg.sender] -= 1;
+
+        emit Sent(msg.sender, receiver, tokenId);
     }
 }
